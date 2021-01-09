@@ -1,12 +1,18 @@
-import "./index.css";
 import { FolderFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 
 const DirectoryList = ({ directory }) => {
   const iconStyle = { color: "#61AFEF", size: 30 };
+  const style = {
+    card: {
+      width: "200px",
+      display: "inline-block",
+      cursor: "pointer",
+    },
+  };
 
   return (
-    <div className="card border-secondary m-3">
+    <div style={style.card} className="card border-secondary m-3">
       <div className="card-header">
         {directory.name}
         <h2>

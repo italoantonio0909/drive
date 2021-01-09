@@ -1,10 +1,10 @@
-import react from "react";
 import Button from "../Shared/Button";
 import { CloudUploadFill } from "react-bootstrap-icons";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import * as service from "../../services";
 
-const FileCreate = () => {
+const FileCreate = (props) => {
   /*Definiendo los estilos*/
   const style = {
     iconStyle: {
@@ -14,8 +14,8 @@ const FileCreate = () => {
       marginLeft: "7px",
     },
     imageCustom: {
-      width: "150px",
-      height: "150px",
+      width: "200px",
+      height: "200px",
       borderRadius: "10px",
       cursor: "pointer",
     },
@@ -23,15 +23,22 @@ const FileCreate = () => {
   /*Uso del estado*/
   const [file, setFile] = useState(null);
   const [photo, setPhoto] = useState(null);
+  const dispatch = useDispatch();
   /*Envio del formulario*/
   const submit = (e) => {
     e.preventDefault();
     const formUploadFile = new FormData();
-    formUploadFile.append("document", file);
-    formUploadFile.append("name", "youtube");
+    formUploadFile.append("uploadFile", file);
     service
-      .uploadFile(formUploadFile)
-      .then((response) => console.log(response))
+      .uploadFile(formUploadFile, props.directory)
+      .then((response) => {
+        const responseMuted = `http://localhost:8000/${props.directory}/${response}`;
+        dispatch({
+          type: "CREATE_FILE",
+          payload: responseMuted,
+        });
+        setFile(null);
+      })
       .catch((error) => console.log(error));
   };
   /*Select file*/
@@ -50,13 +57,13 @@ const FileCreate = () => {
   };
   /*Componente*/
   return (
-    <form>
+    <form className="mt-5">
       <div className="form-group text-center">
         <img
           style={style.imageCustom}
           src={file ? photo : "/no-image.png"}
           alt=""
-          onClick={(e) => openMedia}
+          onClick={openMedia}
         />
         <input
           id="media"

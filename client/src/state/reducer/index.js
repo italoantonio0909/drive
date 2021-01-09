@@ -27,8 +27,10 @@ const reducer = (state = initial, action) => {
       };
     }
     case "LIST_FILES": {
-      console.log(action.payload);
       return { ...state, files: action.payload };
+    }
+    case "CREATE_FILE": {
+      return { ...state, files: state.files.concat(action.payload) };
     }
     default: {
       return state;

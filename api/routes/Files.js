@@ -7,8 +7,8 @@ FilesRoutes.get("/api/drive/files/:directory", FilesController.getFiles);
 /*Upload file*/
 const uploadImage = multer({ storage });
 FilesRoutes.post(
-  "/api/drive/files-upload",
-  uploadImage.single("document"),
+  "/api/drive/files-upload/:directory",
+  uploadImage.single("uploadFile"),
   FilesController.uploadFile
 );
 

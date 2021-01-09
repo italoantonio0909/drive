@@ -5,6 +5,7 @@ const body_parser = require("body-parser");
 const morgan = require("morgan");
 const DirectoryRoutes = require("./routes/Directory");
 const FilesRoutes = require("./routes/Files");
+const path = require("path");
 
 const application = express();
 const server = http.createServer(application);
@@ -17,6 +18,8 @@ application.use(cors());
 /*Middlewares*/
 application.use(morgan("dev"));
 
+/*Express static*/
+application.use(express.static(path.join(__dirname, "drive")));
 /*Routes*/
 application.use(DirectoryRoutes);
 application.use(FilesRoutes);

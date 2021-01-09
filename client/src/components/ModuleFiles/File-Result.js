@@ -1,9 +1,12 @@
 import FileList from "./File-List";
 
-const ListResults = ({ files }) => {
+const ListResults = (props) => {
   return (
     <div className="row">
-      {files && files.map((file) => <FileList file={file} />)}
+      {props.files &&
+        props.files.map((file) => (
+          <FileList directory={props.directory} file={file} />
+        ))}
     </div>
   );
 };

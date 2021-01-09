@@ -28,8 +28,12 @@ const options = {
     "content-type": "multipart/form-data",
   },
 };
-export const uploadFile = (data) => {
+export const uploadFile = (data, directory) => {
   return axios
-    .post(`http://localhost:8000/api/drive/files-upload`, data, options)
+    .post(
+      `http://localhost:8000/api/drive/files-upload/${directory}`,
+      data,
+      options
+    )
     .then((response) => response.data);
 };

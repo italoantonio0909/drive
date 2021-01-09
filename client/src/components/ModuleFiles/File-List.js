@@ -1,10 +1,14 @@
-const FilesList = ({ file }) => {
+const FilesList = (props) => {
+  const style = {
+    avatar: {
+      width: "200px",
+      height: "200px",
+      borderRadius: "7px",
+    },
+  };
   return (
     <div className="card border-secondary m-3">
-      <div className="card-header">
-        {file.name}
-        <h2></h2>
-      </div>
+      <img style={style.avatar} src={props.file} alt="" />
     </div>
   );
 };

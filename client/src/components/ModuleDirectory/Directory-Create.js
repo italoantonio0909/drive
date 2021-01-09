@@ -1,5 +1,4 @@
-import "./index.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import * as service from "../../services";
 import { File, FileEarmarkTextFill } from "react-bootstrap-icons";
 import { useDispatch } from "react-redux";

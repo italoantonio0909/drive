@@ -2,6 +2,11 @@ const fs = require("fs");
 const { BASE_PATH } = require("../path");
 const Directory = {};
 
+/**
+ * Method that allow send directories vector.
+ *
+ * @return {[]} directories
+ */
 Directory.getDirectories = function (request, response) {
   const directories = [];
   fs.readdir(BASE_PATH, (error, files) => {
@@ -15,6 +20,12 @@ Directory.getDirectories = function (request, response) {
   });
 };
 
+/**
+ * Method that allow create directories.
+ *
+ * @param {string} name Name directory
+ * @return {[]} directories
+ */
 Directory.createDirectory = function (request, response) {
   const { name } = request.body;
   if (!name) {
@@ -28,13 +39,4 @@ Directory.createDirectory = function (request, response) {
     return response.status(200).json(name);
   });
 };
-
-Directory.deleteDirectory = function (request, response) {
-  const { name } = request.body;
-  if (fs.existsSync(`${BASE_PATH}/${name}`)) {
-    fs.unlink(`${BASE_PATH}/${name}`, (error) => console.log(error));
-    return response.status(200).send("Directory deleted");
-  }
-};
-
 module.exports = Directory;

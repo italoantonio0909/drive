@@ -9,6 +9,7 @@ import {
   Switch,
   useParams,
 } from "react-router-dom";
+import "./index.css";
 
 const App = () => {
   function DirectoryDetailParam() {
