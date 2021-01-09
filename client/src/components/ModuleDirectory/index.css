@@ -1,0 +1,8 @@
+.card {
+  width: 200px;
+  display: inline-block;
+  cursor: pointer;
+}
+.card:hover {
+  opacity: 0.6;
+}

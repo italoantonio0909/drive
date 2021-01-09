@@ -1,0 +1,12 @@
+.button-custom {
+  background-color: #282828;
+  color: #adafae;
+  border: 0;
+  padding: 12px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.button-custom:hover {
+  opacity: 0.7;
+}
